@@ -60,7 +60,7 @@ macro_rules! impl_minimal_mask {
             ///
             /// If `index >= Self::lanes()` the behavior is undefined.
             #[inline]
-            pub unsafe fn extract_unchecked(self, index: usize) -> bool {
+            pub const unsafe fn extract_unchecked(self, index: usize) -> bool {
                 use crate::llvm::simd_extract;
                 let x: $ielem_ty = simd_extract(self.0, index as u32);
                 x != 0
@@ -93,7 +93,7 @@ macro_rules! impl_minimal_mask {
                           it returns a new vector with the value at `index` \
                           replaced by `new_value`d"
             ]
-            pub unsafe fn replace_unchecked(
+            pub const unsafe fn replace_unchecked(
                 self,
                 index: usize,
                 new_value: bool,
