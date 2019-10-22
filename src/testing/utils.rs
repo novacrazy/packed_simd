@@ -5,9 +5,9 @@
 use crate::{cmp::PartialOrd, fmt::Debug, LexicographicallyOrdered};
 
 /// Tests PartialOrd for `a` and `b` where `a < b` is true.
-pub fn test_lt<T>(
-    a: LexicographicallyOrdered<T>, b: LexicographicallyOrdered<T>,
-) where
+#[allow(clippy::eq_op)]
+pub fn test_lt<T>(a: LexicographicallyOrdered<T>, b: LexicographicallyOrdered<T>)
+where
     LexicographicallyOrdered<T>: Debug + PartialOrd,
 {
     assert!(a < b, "{:?}, {:?}", a, b);
@@ -30,9 +30,9 @@ pub fn test_lt<T>(
 }
 
 /// Tests PartialOrd for `a` and `b` where `a <= b` is true.
-pub fn test_le<T>(
-    a: LexicographicallyOrdered<T>, b: LexicographicallyOrdered<T>,
-) where
+#[allow(clippy::eq_op, clippy::double_comparisons)]
+pub fn test_le<T>(a: LexicographicallyOrdered<T>, b: LexicographicallyOrdered<T>)
+where
     LexicographicallyOrdered<T>: Debug + PartialOrd,
 {
     assert!(a <= b, "{:?}, {:?}", a, b);
@@ -53,10 +53,9 @@ pub fn test_le<T>(
 }
 
 /// Test PartialOrd::partial_cmp for `a` and `b` returning `Ordering`
-pub fn test_cmp<T>(
-    a: LexicographicallyOrdered<T>, b: LexicographicallyOrdered<T>,
-    o: Option<crate::cmp::Ordering>,
-) where
+#[allow(clippy::neg_cmp_op_on_partial_ord)]
+pub fn test_cmp<T>(a: LexicographicallyOrdered<T>, b: LexicographicallyOrdered<T>, o: Option<crate::cmp::Ordering>)
+where
     LexicographicallyOrdered<T>: PartialOrd + Debug,
     T: Debug + crate::sealed::Simd + Copy + Clone,
     <T as crate::sealed::Simd>::Element: Default + Copy + Clone + PartialOrd,
@@ -65,18 +64,8 @@ pub fn test_cmp<T>(
     let mut arr_a: [T::Element; 64] = [Default::default(); 64];
     let mut arr_b: [T::Element; 64] = [Default::default(); 64];
 
-    unsafe {
-        crate::ptr::write_unaligned(
-            arr_a.as_mut_ptr() as *mut LexicographicallyOrdered<T>,
-            a,
-        )
-    }
-    unsafe {
-        crate::ptr::write_unaligned(
-            arr_b.as_mut_ptr() as *mut LexicographicallyOrdered<T>,
-            b,
-        )
-    }
+    unsafe { crate::ptr::write_unaligned(arr_a.as_mut_ptr() as *mut LexicographicallyOrdered<T>, a) }
+    unsafe { crate::ptr::write_unaligned(arr_b.as_mut_ptr() as *mut LexicographicallyOrdered<T>, b) }
     let expected = arr_a[0..T::LANES].partial_cmp(&arr_b[0..T::LANES]);
     let result = a.partial_cmp(&b);
     assert_eq!(expected, result, "{:?}, {:?}", a, b);
@@ -122,7 +111,7 @@ pub fn test_cmp<T>(
 macro_rules! ptr_vals {
     ($id:ty) => {
         // expands to an expression
-        #[allow(unused_unsafe)]
+        #[allow(unused_unsafe, clippy::useless_transmute)]
         unsafe {
             // all bits cleared
             let clear: <$id as sealed::Simd>::Element = crate::mem::zeroed();

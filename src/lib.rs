@@ -217,7 +217,14 @@
          clippy::cast_possible_truncation,
          clippy::cast_lossless,
          clippy::cast_possible_wrap,
+         clippy::approx_constant,
+         clippy::useless_transmute,
+         clippy::transmute_ptr_to_ptr,
+         clippy::float_cmp,
+         clippy::missing_safety_doc,
          clippy::cast_precision_loss,
+         clippy::useless_attribute,
+         clippy::neg_cmp_op_on_partial_ord,
          // This lint is currently broken for generic code
          // See https://github.com/rust-lang/rust-clippy/issues/3410
          clippy::use_self

@@ -46,6 +46,7 @@ macro_rules! impl_swap_bytes {
             /// On little endian this is a no-op. On big endian the bytes are
             /// swapped.
             #[inline]
+            #[allow(clippy::wrong_self_convention)]
             pub fn from_le(x: Self) -> Self {
                 #[cfg(target_endian = "little")]
                 {
@@ -62,6 +63,7 @@ macro_rules! impl_swap_bytes {
             /// On big endian this is a no-op. On little endian the bytes are
             /// swapped.
             #[inline]
+            #[allow(clippy::wrong_self_convention)]
             pub fn from_be(x: Self) -> Self {
                 #[cfg(target_endian = "big")]
                 {
