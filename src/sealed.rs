@@ -18,7 +18,6 @@ pub trait SimdArray: Seal {
 
 /// This traits is used to constraint the arguments
 /// and result type of the portable shuffles.
-#[doc(hidden)]
 pub trait Shuffle<Lanes>: Seal<Lanes> {
     // Lanes is a `[u32; N]` where `N` is the number of vector lanes
 
