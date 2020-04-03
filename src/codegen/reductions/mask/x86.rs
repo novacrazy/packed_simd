@@ -140,9 +140,9 @@ macro_rules! x86_intr_impl {
 /// Mask reduction implementation for `x86` and `x86_64` targets
 macro_rules! impl_mask_reductions {
     // 64-bit wide masks
-    (m8x8) => { x86_m8x8_impl!(m8x8); };
-    (m16x4) => { x86_m8x8_impl!(m16x4); };
-    (m32x2) => { x86_m8x8_impl!(m32x2); };
+    //(m8x8) => { x86_m8x8_impl!(m8x8); };
+    //(m16x4) => { x86_m8x8_impl!(m16x4); };
+    //(m32x2) => { x86_m8x8_impl!(m32x2); };
     // 128-bit wide masks
     (m8x16) => { x86_m8x16_impl!(m8x16); };
     (m16x8) => { x86_m8x16_impl!(m16x8); };
