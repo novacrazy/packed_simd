@@ -13,8 +13,7 @@
 //! - [Vector types](#vector-types)
 //! - [Conditional operations](#conditional-operations)
 //! - [Conversions](#conversions)
-//! - [Performance
-//!   guide](https://rust-lang-nursery.github.io/packed_simd/perf-guide/)
+//! - [Performance guide](https://rust-lang-nursery.github.io/packed_simd/perf-guide/)
 //!
 //! ## Introduction
 //!
@@ -213,7 +212,7 @@
     crate_visibility_modifier,
     custom_inner_attributes
 )]
-#![allow(non_camel_case_types, non_snake_case,
+#![allow(non_camel_case_types, non_snake_case, unused_attributes,
          clippy::cast_possible_truncation,
          clippy::cast_lossless,
          clippy::cast_possible_wrap,
@@ -262,7 +261,7 @@ mod api;
 mod codegen;
 mod sealed;
 
-pub use crate::sealed::{Simd as SimdVector, Shuffle, SimdArray, Mask};
+pub use crate::sealed::{Mask, Shuffle, Simd as SimdVector, SimdArray};
 
 /// Packed SIMD vector type.
 ///
