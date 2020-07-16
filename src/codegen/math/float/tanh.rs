@@ -10,29 +10,29 @@ crate trait Tanh {
 }
 
 macro_rules! define_tanh {
-
-    ($name:ident, $basetype:ty, $simdtype:ty, $lanes:expr, $trait:path) => {
+    ($name:ident, $basetype:ty, $simdtype:ty, $lanes:expr, $method:ident) => {
         fn $name(x: $simdtype) -> $simdtype {
             use core::intrinsics::transmute;
             let mut buf: [$basetype; $lanes] = unsafe { transmute(x) };
             for elem in &mut buf {
-                *elem = <$basetype as $trait>::tanh(*elem);
+                *elem = libm::$method(*elem);
             }
             unsafe { transmute(buf) }
         }
     };
 
     (f32 => $name:ident, $type:ty, $lanes:expr) => {
-        define_tanh!($name, f32, $type, $lanes, libm::F32Ext);
+        define_tanh!($name, f32, $type, $lanes, tanhf);
     };
 
     (f64 => $name:ident, $type:ty, $lanes:expr) => {
-        define_tanh!($name, f64, $type, $lanes, libm::F64Ext);
+        define_tanh!($name, f64, $type, $lanes, tanh);
     };
 }
 
-// llvm does not seem to expose the hyperbolic versions of trigonometric functions;
-// we thus call the classical rust versions on all of them (which stem from cmath).
+// llvm does not seem to expose the hyperbolic versions of trigonometric
+// functions; we thus call the classical rust versions on all of them (which
+// stem from cmath).
 define_tanh!(f32 => tanh_v2f32, f32x2, 2);
 define_tanh!(f32 => tanh_v4f32, f32x4, 4);
 define_tanh!(f32 => tanh_v8f32, f32x8, 8);
@@ -43,11 +43,11 @@ define_tanh!(f64 => tanh_v4f64, f64x4, 4);
 define_tanh!(f64 => tanh_v8f64, f64x8, 8);
 
 fn tanh_f32(x: f32) -> f32 {
-    libm::F32Ext::tanh(x)
+    libm::tanhf(x)
 }
 
 fn tanh_f64(x: f64) -> f64 {
-    libm::F64Ext::tanh(x)
+    libm::tanh(x)
 }
 
 gen_unary_impl_table!(Tanh, tanh);
