@@ -19,6 +19,8 @@ extern "C" {
     fn fabs_v8f32(x: f32x8) -> f32x8;
     #[link_name = "llvm.fabs.v16f32"]
     fn fabs_v16f32(x: f32x16) -> f32x16;
+    #[link_name = "llvm.fabs.v32f32"]
+    fn fabs_v32f32(x: f32x32) -> f32x32;
     /* FIXME 64-bit fabsgle elem vectors
     #[link_name = "llvm.fabs.v1f64"]
     fn fabs_v1f64(x: f64x1) -> f64x1;
@@ -29,6 +31,8 @@ extern "C" {
     fn fabs_v4f64(x: f64x4) -> f64x4;
     #[link_name = "llvm.fabs.v8f64"]
     fn fabs_v8f64(x: f64x8) -> f64x8;
+    #[link_name = "llvm.fabs.v16f64"]
+    fn fabs_v16f64(x: f64x16) -> f64x16;
 
     #[link_name = "llvm.fabs.f32"]
     fn fabs_f32(x: f32) -> f32;
@@ -95,9 +99,11 @@ cfg_if! {
         impl_unary!(f32x4: fabs_v4f32);
         impl_unary!(f32x8: fabs_v8f32);
         impl_unary!(f32x16: fabs_v16f32);
+        impl_unary!(f32x32: fabs_v32f32);
 
         impl_unary!(f64x2: fabs_v2f64);
         impl_unary!(f64x4: fabs_v4f64);
         impl_unary!(f64x8: fabs_v8f64);
+        impl_unary!(f64x16: fabs_v16f64);
     }
 }

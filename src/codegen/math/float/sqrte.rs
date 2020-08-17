@@ -59,9 +59,11 @@ cfg_if! {
         impl_unary!(f32x4[g]: simd_fsqrt);
         impl_unary!(f32x8[g]: simd_fsqrt);
         impl_unary!(f32x16[g]: simd_fsqrt);
+        impl_unary!(f32x32[g]: simd_fsqrt);
 
         impl_unary!(f64x2[g]: simd_fsqrt);
         impl_unary!(f64x4[g]: simd_fsqrt);
         impl_unary!(f64x8[g]: simd_fsqrt);
+        impl_unary!(f64x16[g]: simd_fsqrt);
     }
 }

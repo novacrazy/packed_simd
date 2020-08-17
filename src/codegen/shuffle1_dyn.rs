@@ -16,8 +16,7 @@ macro_rules! impl_fallback {
             fn shuffle1_dyn(self, indices: Self::Indices) -> Self {
                 let mut result = Self::splat(0);
                 for i in 0..$id::lanes() {
-                    result = result
-                        .replace(i, self.extract(indices.extract(i) as usize));
+                    result = result.replace(i, self.extract(indices.extract(i) as usize));
                 }
                 result
             }
@@ -171,16 +170,12 @@ macro_rules! impl_shuffle1_dyn {
             #[inline]
             fn shuffle1_dyn(self, indices: Self::Indices) -> Self {
                 let indices: u8x8 = (indices * 2).cast();
-                let indices: u8x16 = shuffle!(
-                    indices, [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7]
-                );
-                let v = u8x16::new(
-                    0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1
-                );
+                let indices: u8x16 = shuffle!(indices, [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7]);
+                let v = u8x16::new(0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1);
                 let indices = indices + v;
                 unsafe {
-                    let s: u8x16 =crate::mem::transmute(self);
-                   crate::mem::transmute(s.shuffle1_dyn(indices))
+                    let s: u8x16 = crate::mem::transmute(self);
+                    crate::mem::transmute(s.shuffle1_dyn(indices))
                 }
             }
         }
@@ -289,7 +284,9 @@ macro_rules! impl_shuffle1_dyn {
             }
         }
     };
-    ($id:ident) => { impl_fallback!($id); }
+    ($id:ident) => {
+        impl_fallback!($id);
+    };
 }
 
 impl_shuffle1_dyn!(u8x2);
@@ -298,29 +295,35 @@ impl_shuffle1_dyn!(u8x8);
 impl_shuffle1_dyn!(u8x16);
 impl_shuffle1_dyn!(u8x32);
 impl_shuffle1_dyn!(u8x64);
+impl_shuffle1_dyn!(u8x128);
 
 impl_shuffle1_dyn!(u16x2);
 impl_shuffle1_dyn!(u16x4);
 impl_shuffle1_dyn!(u16x8);
 impl_shuffle1_dyn!(u16x16);
 impl_shuffle1_dyn!(u16x32);
+impl_shuffle1_dyn!(u16x64);
 
 impl_shuffle1_dyn!(u32x2);
 impl_shuffle1_dyn!(u32x4);
 impl_shuffle1_dyn!(u32x8);
 impl_shuffle1_dyn!(u32x16);
+impl_shuffle1_dyn!(u32x32);
 
 impl_shuffle1_dyn!(u64x2);
 impl_shuffle1_dyn!(u64x4);
 impl_shuffle1_dyn!(u64x8);
+impl_shuffle1_dyn!(u64x16);
 
 impl_shuffle1_dyn!(usizex2);
 impl_shuffle1_dyn!(usizex4);
 impl_shuffle1_dyn!(usizex8);
+impl_shuffle1_dyn!(usizex16);
 
 impl_shuffle1_dyn!(u128x1);
 impl_shuffle1_dyn!(u128x2);
 impl_shuffle1_dyn!(u128x4);
+impl_shuffle1_dyn!(u128x8);
 
 // Implementation for non-unsigned vector types
 macro_rules! impl_shuffle1_dyn_non_u {
@@ -344,29 +347,35 @@ impl_shuffle1_dyn_non_u!(i8x8, u8x8);
 impl_shuffle1_dyn_non_u!(i8x16, u8x16);
 impl_shuffle1_dyn_non_u!(i8x32, u8x32);
 impl_shuffle1_dyn_non_u!(i8x64, u8x64);
+impl_shuffle1_dyn_non_u!(i8x128, u8x128);
 
 impl_shuffle1_dyn_non_u!(i16x2, u16x2);
 impl_shuffle1_dyn_non_u!(i16x4, u16x4);
 impl_shuffle1_dyn_non_u!(i16x8, u16x8);
 impl_shuffle1_dyn_non_u!(i16x16, u16x16);
 impl_shuffle1_dyn_non_u!(i16x32, u16x32);
+impl_shuffle1_dyn_non_u!(i16x64, u16x64);
 
 impl_shuffle1_dyn_non_u!(i32x2, u32x2);
 impl_shuffle1_dyn_non_u!(i32x4, u32x4);
 impl_shuffle1_dyn_non_u!(i32x8, u32x8);
 impl_shuffle1_dyn_non_u!(i32x16, u32x16);
+impl_shuffle1_dyn_non_u!(i32x32, u32x32);
 
 impl_shuffle1_dyn_non_u!(i64x2, u64x2);
 impl_shuffle1_dyn_non_u!(i64x4, u64x4);
 impl_shuffle1_dyn_non_u!(i64x8, u64x8);
+impl_shuffle1_dyn_non_u!(i64x16, u64x16);
 
 impl_shuffle1_dyn_non_u!(isizex2, usizex2);
 impl_shuffle1_dyn_non_u!(isizex4, usizex4);
 impl_shuffle1_dyn_non_u!(isizex8, usizex8);
+impl_shuffle1_dyn_non_u!(isizex16, usizex16);
 
 impl_shuffle1_dyn_non_u!(i128x1, u128x1);
 impl_shuffle1_dyn_non_u!(i128x2, u128x2);
 impl_shuffle1_dyn_non_u!(i128x4, u128x4);
+impl_shuffle1_dyn_non_u!(i128x8, u128x8);
 
 impl_shuffle1_dyn_non_u!(m8x2, u8x2);
 impl_shuffle1_dyn_non_u!(m8x4, u8x4);
@@ -374,38 +383,46 @@ impl_shuffle1_dyn_non_u!(m8x8, u8x8);
 impl_shuffle1_dyn_non_u!(m8x16, u8x16);
 impl_shuffle1_dyn_non_u!(m8x32, u8x32);
 impl_shuffle1_dyn_non_u!(m8x64, u8x64);
+impl_shuffle1_dyn_non_u!(m8x128, u8x128);
 
 impl_shuffle1_dyn_non_u!(m16x2, u16x2);
 impl_shuffle1_dyn_non_u!(m16x4, u16x4);
 impl_shuffle1_dyn_non_u!(m16x8, u16x8);
 impl_shuffle1_dyn_non_u!(m16x16, u16x16);
 impl_shuffle1_dyn_non_u!(m16x32, u16x32);
+impl_shuffle1_dyn_non_u!(m16x64, u16x64);
 
 impl_shuffle1_dyn_non_u!(m32x2, u32x2);
 impl_shuffle1_dyn_non_u!(m32x4, u32x4);
 impl_shuffle1_dyn_non_u!(m32x8, u32x8);
 impl_shuffle1_dyn_non_u!(m32x16, u32x16);
+impl_shuffle1_dyn_non_u!(m32x32, u32x32);
 
 impl_shuffle1_dyn_non_u!(m64x2, u64x2);
 impl_shuffle1_dyn_non_u!(m64x4, u64x4);
 impl_shuffle1_dyn_non_u!(m64x8, u64x8);
+impl_shuffle1_dyn_non_u!(m64x16, u64x16);
 
 impl_shuffle1_dyn_non_u!(msizex2, usizex2);
 impl_shuffle1_dyn_non_u!(msizex4, usizex4);
 impl_shuffle1_dyn_non_u!(msizex8, usizex8);
+impl_shuffle1_dyn_non_u!(msizex16, usizex16);
 
 impl_shuffle1_dyn_non_u!(m128x1, u128x1);
 impl_shuffle1_dyn_non_u!(m128x2, u128x2);
 impl_shuffle1_dyn_non_u!(m128x4, u128x4);
+impl_shuffle1_dyn_non_u!(m128x8, u128x8);
 
 impl_shuffle1_dyn_non_u!(f32x2, u32x2);
 impl_shuffle1_dyn_non_u!(f32x4, u32x4);
 impl_shuffle1_dyn_non_u!(f32x8, u32x8);
 impl_shuffle1_dyn_non_u!(f32x16, u32x16);
+impl_shuffle1_dyn_non_u!(f32x32, u32x32);
 
 impl_shuffle1_dyn_non_u!(f64x2, u64x2);
 impl_shuffle1_dyn_non_u!(f64x4, u64x4);
 impl_shuffle1_dyn_non_u!(f64x8, u64x8);
+impl_shuffle1_dyn_non_u!(f64x16, u64x16);
 
 // Implementation for non-unsigned vector types
 macro_rules! impl_shuffle1_dyn_ptr {
@@ -426,7 +443,9 @@ macro_rules! impl_shuffle1_dyn_ptr {
 impl_shuffle1_dyn_ptr!(cptrx2, usizex2);
 impl_shuffle1_dyn_ptr!(cptrx4, usizex4);
 impl_shuffle1_dyn_ptr!(cptrx8, usizex8);
+impl_shuffle1_dyn_ptr!(cptrx16, usizex16);
 
 impl_shuffle1_dyn_ptr!(mptrx2, usizex2);
 impl_shuffle1_dyn_ptr!(mptrx4, usizex4);
 impl_shuffle1_dyn_ptr!(mptrx8, usizex8);
+impl_shuffle1_dyn_ptr!(mptrx16, usizex16);

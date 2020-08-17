@@ -106,3 +106,6 @@ pub use self::v256::*;
 
 mod v512;
 pub use self::v512::*;
+
+mod v1024;
+pub use self::v1024::*;

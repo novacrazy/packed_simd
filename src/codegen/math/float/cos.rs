@@ -19,6 +19,8 @@ extern "C" {
     fn cos_v8f32(x: f32x8) -> f32x8;
     #[link_name = "llvm.cos.v16f32"]
     fn cos_v16f32(x: f32x16) -> f32x16;
+    #[link_name = "llvm.cos.v32f32"]
+    fn cos_v32f32(x: f32x32) -> f32x32;
     /* FIXME 64-bit cosgle elem vectors
     #[link_name = "llvm.cos.v1f64"]
     fn cos_v1f64(x: f64x1) -> f64x1;
@@ -29,6 +31,8 @@ extern "C" {
     fn cos_v4f64(x: f64x4) -> f64x4;
     #[link_name = "llvm.cos.v8f64"]
     fn cos_v8f64(x: f64x8) -> f64x8;
+    #[link_name = "llvm.cos.v16f64"]
+    fn cos_v16f64(x: f64x16) -> f64x16;
 
     #[link_name = "llvm.cos.f32"]
     fn cos_f32(x: f32) -> f32;
@@ -95,9 +99,11 @@ cfg_if! {
         impl_unary!(f32x4: cos_v4f32);
         impl_unary!(f32x8: cos_v8f32);
         impl_unary!(f32x16: cos_v16f32);
+        impl_unary!(f32x32: cos_v32f32);
 
         impl_unary!(f64x2: cos_v2f64);
         impl_unary!(f64x4: cos_v4f64);
         impl_unary!(f64x8: cos_v8f64);
+        impl_unary!(f64x16: cos_v16f64);
     }
 }

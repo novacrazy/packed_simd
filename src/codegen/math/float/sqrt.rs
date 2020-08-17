@@ -19,6 +19,8 @@ extern "C" {
     fn sqrt_v8f32(x: f32x8) -> f32x8;
     #[link_name = "llvm.sqrt.v16f32"]
     fn sqrt_v16f32(x: f32x16) -> f32x16;
+    #[link_name = "llvm.sqrt.v32f32"]
+    fn sqrt_v32f32(x: f32x32) -> f32x32;
     /* FIXME 64-bit sqrtgle elem vectors
     #[link_name = "llvm.sqrt.v1f64"]
     fn sqrt_v1f64(x: f64x1) -> f64x1;
@@ -29,6 +31,8 @@ extern "C" {
     fn sqrt_v4f64(x: f64x4) -> f64x4;
     #[link_name = "llvm.sqrt.v8f64"]
     fn sqrt_v8f64(x: f64x8) -> f64x8;
+    #[link_name = "llvm.sqrt.v16f64"]
+    fn sqrt_v16f64(x: f64x16) -> f64x16;
 
     #[link_name = "llvm.sqrt.f32"]
     fn sqrt_f32(x: f32) -> f32;
@@ -95,9 +99,11 @@ cfg_if! {
         impl_unary!(f32x4: sqrt_v4f32);
         impl_unary!(f32x8: sqrt_v8f32);
         impl_unary!(f32x16: sqrt_v16f32);
+        impl_unary!(f32x32: sqrt_v32f32);
 
         impl_unary!(f64x2: sqrt_v2f64);
         impl_unary!(f64x4: sqrt_v4f64);
         impl_unary!(f64x8: sqrt_v8f64);
+        impl_unary!(f64x16: sqrt_v16f64);
     }
 }

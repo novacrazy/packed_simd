@@ -42,28 +42,34 @@ impl_mask_reductions!(m8x8);
 impl_mask_reductions!(m8x16);
 impl_mask_reductions!(m8x32);
 impl_mask_reductions!(m8x64);
+impl_mask_reductions!(m8x128);
 
 impl_mask_reductions!(m16x2);
 impl_mask_reductions!(m16x4);
 impl_mask_reductions!(m16x8);
 impl_mask_reductions!(m16x16);
 impl_mask_reductions!(m16x32);
+impl_mask_reductions!(m16x64);
 
 impl_mask_reductions!(m32x2);
 impl_mask_reductions!(m32x4);
 impl_mask_reductions!(m32x8);
 impl_mask_reductions!(m32x16);
+impl_mask_reductions!(m32x32);
 
 // FIXME: 64-bit single element vector
 // impl_mask_reductions!(m64x1);
 impl_mask_reductions!(m64x2);
 impl_mask_reductions!(m64x4);
 impl_mask_reductions!(m64x8);
+impl_mask_reductions!(m64x16);
 
 impl_mask_reductions!(m128x1);
 impl_mask_reductions!(m128x2);
 impl_mask_reductions!(m128x4);
+impl_mask_reductions!(m128x8);
 
 impl_mask_reductions!(msizex2);
 impl_mask_reductions!(msizex4);
 impl_mask_reductions!(msizex8);
+impl_mask_reductions!(msizex16);

@@ -17,6 +17,8 @@ extern "C" {
     fn ctlz_u8x32(x: u8x32, is_zero_undef: bool) -> u8x32;
     #[link_name = "llvm.ctlz.v64i8"]
     fn ctlz_u8x64(x: u8x64, is_zero_undef: bool) -> u8x64;
+    #[link_name = "llvm.ctlz.v128i8"]
+    fn ctlz_u8x128(x: u8x128, is_zero_undef: bool) -> u8x128;
 
     #[link_name = "llvm.ctlz.v2i16"]
     fn ctlz_u16x2(x: u16x2, is_zero_undef: bool) -> u16x2;
@@ -28,6 +30,8 @@ extern "C" {
     fn ctlz_u16x16(x: u16x16, is_zero_undef: bool) -> u16x16;
     #[link_name = "llvm.ctlz.v32i16"]
     fn ctlz_u16x32(x: u16x32, is_zero_undef: bool) -> u16x32;
+    #[link_name = "llvm.ctlz.v64i16"]
+    fn ctlz_u16x64(x: u16x64, is_zero_undef: bool) -> u16x64;
 
     #[link_name = "llvm.ctlz.v2i32"]
     fn ctlz_u32x2(x: u32x2, is_zero_undef: bool) -> u32x2;
@@ -37,6 +41,8 @@ extern "C" {
     fn ctlz_u32x8(x: u32x8, is_zero_undef: bool) -> u32x8;
     #[link_name = "llvm.ctlz.v16i32"]
     fn ctlz_u32x16(x: u32x16, is_zero_undef: bool) -> u32x16;
+    #[link_name = "llvm.ctlz.v32i32"]
+    fn ctlz_u32x32(x: u32x32, is_zero_undef: bool) -> u32x32;
 
     #[link_name = "llvm.ctlz.v2i64"]
     fn ctlz_u64x2(x: u64x2, is_zero_undef: bool) -> u64x2;
@@ -44,6 +50,8 @@ extern "C" {
     fn ctlz_u64x4(x: u64x4, is_zero_undef: bool) -> u64x4;
     #[link_name = "llvm.ctlz.v8i64"]
     fn ctlz_u64x8(x: u64x8, is_zero_undef: bool) -> u64x8;
+    #[link_name = "llvm.ctlz.v16i64"]
+    fn ctlz_u64x16(x: u64x16, is_zero_undef: bool) -> u64x16;
 
     #[link_name = "llvm.ctlz.v1i128"]
     fn ctlz_u128x1(x: u128x1, is_zero_undef: bool) -> u128x1;
@@ -51,6 +59,8 @@ extern "C" {
     fn ctlz_u128x2(x: u128x2, is_zero_undef: bool) -> u128x2;
     #[link_name = "llvm.ctlz.v4i128"]
     fn ctlz_u128x4(x: u128x4, is_zero_undef: bool) -> u128x4;
+    #[link_name = "llvm.ctlz.v8i128"]
+    fn ctlz_u128x8(x: u128x8, is_zero_undef: bool) -> u128x8;
 
     #[link_name = "llvm.cttz.v2i8"]
     fn cttz_u8x2(x: u8x2, is_zero_undef: bool) -> u8x2;
@@ -64,6 +74,8 @@ extern "C" {
     fn cttz_u8x32(x: u8x32, is_zero_undef: bool) -> u8x32;
     #[link_name = "llvm.cttz.v64i8"]
     fn cttz_u8x64(x: u8x64, is_zero_undef: bool) -> u8x64;
+    #[link_name = "llvm.cttz.v128i8"]
+    fn cttz_u8x128(x: u8x128, is_zero_undef: bool) -> u8x128;
 
     #[link_name = "llvm.cttz.v2i16"]
     fn cttz_u16x2(x: u16x2, is_zero_undef: bool) -> u16x2;
@@ -75,6 +87,8 @@ extern "C" {
     fn cttz_u16x16(x: u16x16, is_zero_undef: bool) -> u16x16;
     #[link_name = "llvm.cttz.v32i16"]
     fn cttz_u16x32(x: u16x32, is_zero_undef: bool) -> u16x32;
+    #[link_name = "llvm.cttz.v64i16"]
+    fn cttz_u16x64(x: u16x64, is_zero_undef: bool) -> u16x64;
 
     #[link_name = "llvm.cttz.v2i32"]
     fn cttz_u32x2(x: u32x2, is_zero_undef: bool) -> u32x2;
@@ -84,6 +98,8 @@ extern "C" {
     fn cttz_u32x8(x: u32x8, is_zero_undef: bool) -> u32x8;
     #[link_name = "llvm.cttz.v16i32"]
     fn cttz_u32x16(x: u32x16, is_zero_undef: bool) -> u32x16;
+    #[link_name = "llvm.cttz.v32i32"]
+    fn cttz_u32x32(x: u32x32, is_zero_undef: bool) -> u32x32;
 
     #[link_name = "llvm.cttz.v2i64"]
     fn cttz_u64x2(x: u64x2, is_zero_undef: bool) -> u64x2;
@@ -91,6 +107,8 @@ extern "C" {
     fn cttz_u64x4(x: u64x4, is_zero_undef: bool) -> u64x4;
     #[link_name = "llvm.cttz.v8i64"]
     fn cttz_u64x8(x: u64x8, is_zero_undef: bool) -> u64x8;
+    #[link_name = "llvm.cttz.v16i64"]
+    fn cttz_u64x16(x: u64x16, is_zero_undef: bool) -> u64x16;
 
     #[link_name = "llvm.cttz.v1i128"]
     fn cttz_u128x1(x: u128x1, is_zero_undef: bool) -> u128x1;
@@ -98,6 +116,8 @@ extern "C" {
     fn cttz_u128x2(x: u128x2, is_zero_undef: bool) -> u128x2;
     #[link_name = "llvm.cttz.v4i128"]
     fn cttz_u128x4(x: u128x4, is_zero_undef: bool) -> u128x4;
+    #[link_name = "llvm.cttz.v8i128"]
+    fn cttz_u128x8(x: u128x8, is_zero_undef: bool) -> u128x8;
 
     #[link_name = "llvm.ctpop.v2i8"]
     fn ctpop_u8x2(x: u8x2) -> u8x2;
@@ -111,6 +131,8 @@ extern "C" {
     fn ctpop_u8x32(x: u8x32) -> u8x32;
     #[link_name = "llvm.ctpop.v64i8"]
     fn ctpop_u8x64(x: u8x64) -> u8x64;
+    #[link_name = "llvm.ctpop.v128i8"]
+    fn ctpop_u8x128(x: u8x128) -> u8x128;
 
     #[link_name = "llvm.ctpop.v2i16"]
     fn ctpop_u16x2(x: u16x2) -> u16x2;
@@ -122,6 +144,8 @@ extern "C" {
     fn ctpop_u16x16(x: u16x16) -> u16x16;
     #[link_name = "llvm.ctpop.v32i16"]
     fn ctpop_u16x32(x: u16x32) -> u16x32;
+    #[link_name = "llvm.ctpop.v64i16"]
+    fn ctpop_u16x64(x: u16x64) -> u16x64;
 
     #[link_name = "llvm.ctpop.v2i32"]
     fn ctpop_u32x2(x: u32x2) -> u32x2;
@@ -131,6 +155,8 @@ extern "C" {
     fn ctpop_u32x8(x: u32x8) -> u32x8;
     #[link_name = "llvm.ctpop.v16i32"]
     fn ctpop_u32x16(x: u32x16) -> u32x16;
+    #[link_name = "llvm.ctpop.v32i32"]
+    fn ctpop_u32x32(x: u32x32) -> u32x32;
 
     #[link_name = "llvm.ctpop.v2i64"]
     fn ctpop_u64x2(x: u64x2) -> u64x2;
@@ -138,6 +164,8 @@ extern "C" {
     fn ctpop_u64x4(x: u64x4) -> u64x4;
     #[link_name = "llvm.ctpop.v8i64"]
     fn ctpop_u64x8(x: u64x8) -> u64x8;
+    #[link_name = "llvm.ctpop.v16i64"]
+    fn ctpop_u64x16(x: u64x16) -> u64x16;
 
     #[link_name = "llvm.ctpop.v1i128"]
     fn ctpop_u128x1(x: u128x1) -> u128x1;
@@ -145,6 +173,8 @@ extern "C" {
     fn ctpop_u128x2(x: u128x2) -> u128x2;
     #[link_name = "llvm.ctpop.v4i128"]
     fn ctpop_u128x4(x: u128x4) -> u128x4;
+    #[link_name = "llvm.ctpop.v8i128"]
+    fn ctpop_u128x8(x: u128x8) -> u128x8;
 }
 
 crate trait BitManip {
@@ -262,21 +292,30 @@ impl_bit_manip! { u8x8   ,   u8, i8x8, i8,   ctpop_u8x8,   ctlz_u8x8,   cttz_u8x
 impl_bit_manip! { u8x16  ,  u8, i8x16, i8,  ctpop_u8x16,  ctlz_u8x16,  cttz_u8x16  }
 impl_bit_manip! { u8x32  ,  u8, i8x32, i8,  ctpop_u8x32,  ctlz_u8x32,  cttz_u8x32  }
 impl_bit_manip! { u8x64  ,  u8, i8x64, i8,  ctpop_u8x64,  ctlz_u8x64,  cttz_u8x64  }
+impl_bit_manip! { u8x128 ,  u8, i8x128, i8, ctpop_u8x128, ctlz_u8x128, cttz_u8x128  }
+
 impl_bit_manip! { u16x2  ,  u16, i16x2, i16,  ctpop_u16x2,  ctlz_u16x2,  cttz_u16x2  }
 impl_bit_manip! { u16x4  ,  u16, i16x4, i16,  ctpop_u16x4,  ctlz_u16x4,  cttz_u16x4  }
 impl_bit_manip! { u16x8  ,  u16, i16x8, i16,  ctpop_u16x8,  ctlz_u16x8,  cttz_u16x8  }
 impl_bit_manip! { u16x16 , u16, i16x16, i16, ctpop_u16x16, ctlz_u16x16, cttz_u16x16 }
 impl_bit_manip! { u16x32 , u16, i16x32, i16, ctpop_u16x32, ctlz_u16x32, cttz_u16x32 }
+impl_bit_manip! { u16x64 , u16, i16x64, i16, ctpop_u16x64, ctlz_u16x64, cttz_u16x64 }
+
 impl_bit_manip! { u32x2  ,  u32, i32x2, i32,  ctpop_u32x2,  ctlz_u32x2,  cttz_u32x2  }
 impl_bit_manip! { u32x4  ,  u32, i32x4, i32,  ctpop_u32x4,  ctlz_u32x4,  cttz_u32x4  }
 impl_bit_manip! { u32x8  ,  u32, i32x8, i32,  ctpop_u32x8,  ctlz_u32x8,  cttz_u32x8  }
 impl_bit_manip! { u32x16 , u32, i32x16, i32, ctpop_u32x16, ctlz_u32x16, cttz_u32x16 }
+impl_bit_manip! { u32x32 , u32, i32x32, i32, ctpop_u32x32, ctlz_u32x32, cttz_u32x32 }
+
 impl_bit_manip! { u64x2  ,  u64, i64x2, i64,  ctpop_u64x2,  ctlz_u64x2,  cttz_u64x2  }
 impl_bit_manip! { u64x4  ,  u64, i64x4, i64,  ctpop_u64x4,  ctlz_u64x4,  cttz_u64x4  }
 impl_bit_manip! { u64x8  ,  u64, i64x8, i64,  ctpop_u64x8,  ctlz_u64x8,  cttz_u64x8  }
+impl_bit_manip! { u64x16 ,  u64, i64x16, i64, ctpop_u64x16, ctlz_u64x16, cttz_u64x16  }
+
 impl_bit_manip! { u128x1 , u128, i128x1, i128, ctpop_u128x1, ctlz_u128x1, cttz_u128x1 }
 impl_bit_manip! { u128x2 , u128, i128x2, i128, ctpop_u128x2, ctlz_u128x2, cttz_u128x2 }
 impl_bit_manip! { u128x4 , u128, i128x4, i128, ctpop_u128x4, ctlz_u128x4, cttz_u128x4 }
+impl_bit_manip! { u128x8 , u128, i128x8, i128, ctpop_u128x8, ctlz_u128x8, cttz_u128x8 }
 
 #[cfg(target_arch = "aarch64")]
 impl BitManip for u8x8 {
@@ -336,18 +375,22 @@ cfg_if! {
         impl_bit_manip! { sized: usizex2, usize, isizex2, isize, u8x2 }
         impl_bit_manip! { sized: usizex4, usize, isizex4, isize, u8x4 }
         impl_bit_manip! { sized: usizex8, usize, isizex8, isize, u8x8 }
+        impl_bit_manip! { sized: usizex16, usize, isizex16, isize, u8x16 }
     } else if #[cfg(target_pointer_width = "16")] {
         impl_bit_manip! { sized: usizex2, usize, isizex2, isize, u16x2 }
         impl_bit_manip! { sized: usizex4, usize, isizex4, isize, u16x4 }
         impl_bit_manip! { sized: usizex8, usize, isizex8, isize, u16x8 }
+        impl_bit_manip! { sized: usizex16, usize, isizex16, isize, u16x16 }
     } else if #[cfg(target_pointer_width = "32")] {
         impl_bit_manip! { sized: usizex2, usize, isizex2, isize, u32x2 }
         impl_bit_manip! { sized: usizex4, usize, isizex4, isize, u32x4 }
         impl_bit_manip! { sized: usizex8, usize, isizex8, isize, u32x8 }
+        impl_bit_manip! { sized: usizex16, usize, isizex16, isize, u32x16 }
     } else if #[cfg(target_pointer_width = "64")] {
         impl_bit_manip! { sized: usizex2, usize, isizex2, isize, u64x2 }
         impl_bit_manip! { sized: usizex4, usize, isizex4, isize, u64x4 }
         impl_bit_manip! { sized: usizex8, usize, isizex8, isize, u64x8 }
+        impl_bit_manip! { sized: usizex16, usize, isizex16, isize, u64x16 }
     } else {
         compile_error!("unsupported target_pointer_width");
     }

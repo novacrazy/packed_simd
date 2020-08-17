@@ -19,9 +19,7 @@ where
 {
     #[inline]
     fn into_bits(self) -> U {
-        debug_assert!(
-            crate::mem::size_of::<Self>() == crate::mem::size_of::<U>()
-        );
+        debug_assert!(crate::mem::size_of::<Self>() == crate::mem::size_of::<U>());
         U::from_bits(self)
     }
 }
@@ -54,6 +52,9 @@ pub use self::v256::*;
 
 mod v512;
 pub use self::v512::*;
+
+mod v1024;
+pub use self::v1024::*;
 
 mod arch_specific;
 pub use self::arch_specific::*;

@@ -32,3 +32,13 @@ impl_mut_p!(
     [*mut T; 8]: mptrx8, msizex8, usizex8, isizex8 | test_v512 | x0, x1, x2, x3, x4, x5, x6, x7 | From: |
     /// A vector with 8 `*mut T` lanes
 );
+
+impl_const_p!(
+    [*const T; 16]: cptrx16, msizex16, usizex16, isizex16 | test_v1024 | x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15 | From: |
+    /// A vector with 16 `*const T` lanes
+);
+
+impl_mut_p!(
+    [*mut T; 16]: mptrx16, msizex16, usizex16, isizex16 | test_v1024 | x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15 | From: |
+    /// A vector with 16 `*mut T` lanes
+);

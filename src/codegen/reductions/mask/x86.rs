@@ -16,6 +16,10 @@ mod avx;
 #[macro_use]
 mod avx2;
 
+#[cfg(target_feature = "avx512f")]
+#[macro_use]
+mod avx512;
+
 /// x86 64-bit m8x8 implementation
 macro_rules! x86_m8x8_impl {
     ($id:ident) => {
@@ -120,17 +124,17 @@ macro_rules! x86_m64x4_impl {
 /// Fallback implementation.
 macro_rules! x86_intr_impl {
     ($id:ident) => {
-    impl All for $id {
-        #[inline]
-        unsafe fn all(self) -> bool {
-        use crate::llvm::simd_reduce_all;
-            simd_reduce_all(self.0)
+        impl All for $id {
+            #[inline]
+            unsafe fn all(self) -> bool {
+                use crate::llvm::simd_reduce_all;
+                simd_reduce_all(self.0)
+            }
         }
-    }
         impl Any for $id {
             #[inline]
             unsafe fn any(self) -> bool {
-            use crate::llvm::simd_reduce_any;
+                use crate::llvm::simd_reduce_any;
                 simd_reduce_any(self.0)
             }
         }
@@ -138,6 +142,7 @@ macro_rules! x86_intr_impl {
 }
 
 /// Mask reduction implementation for `x86` and `x86_64` targets
+#[rustfmt::skip]
 macro_rules! impl_mask_reductions {
     // 64-bit wide masks
     //(m8x8) => { x86_m8x8_impl!(m8x8); };
@@ -155,6 +160,8 @@ macro_rules! impl_mask_reductions {
     (m32x8) => { x86_m32x8_impl!(m32x8, m32x4); };
     (m64x4) => { x86_m64x4_impl!(m64x4, m64x2); };
     (m128x2) => { x86_intr_impl!(m128x2); };
+    (m128x4) => { x86_intr_impl!(m128x4); };
+    (m128x8) => { x86_intr_impl!(m128x8); };
     (msizex2) => {
         cfg_if! {
             if #[cfg(target_pointer_width = "64")] {
@@ -190,5 +197,7 @@ macro_rules! impl_mask_reductions {
     };
 
     // Fallback to LLVM's default code-generation:
-    ($id:ident) => { fallback_impl!($id); };
+    ($id:ident) => {
+        fallback_impl!($id);
+    };
 }

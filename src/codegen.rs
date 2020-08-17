@@ -55,6 +55,9 @@ crate use self::v256::*;
 crate mod v512;
 crate use self::v512::*;
 
+crate mod v1024;
+crate use self::v1024::*;
+
 crate mod vSize;
 crate use self::vSize::*;
 

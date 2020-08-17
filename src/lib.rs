@@ -249,8 +249,7 @@ use wasm_bindgen_test::*;
 
 #[allow(unused_imports)]
 use core::{
-    /* arch (handled above), */ cmp, f32, f64, fmt, hash, hint, i128,
-    i16, i32, i64, i8, intrinsics, isize, iter, marker, mem, ops, ptr, slice,
+    /* arch (handled above), */ cmp, f32, f64, fmt, hash, hint, i128, i16, i32, i64, i8, intrinsics, isize, iter, marker, mem, ops, ptr, slice,
     u128, u16, u32, u64, u8, usize,
 };
 
@@ -313,6 +312,9 @@ pub use self::v256::*;
 mod v512;
 pub use self::v512::*;
 
+mod v1024;
+pub use self::v1024::*;
+
 mod vSize;
 pub use self::vSize::*;
 
@@ -327,8 +329,7 @@ pub use self::api::into_bits::*;
 // Re-export the shuffle intrinsics required by the `shuffle!` macro.
 #[doc(hidden)]
 pub use self::codegen::llvm::{
-    __shuffle_vector16, __shuffle_vector2, __shuffle_vector32,
-    __shuffle_vector4, __shuffle_vector64, __shuffle_vector8,
+    __shuffle_vector128, __shuffle_vector16, __shuffle_vector2, __shuffle_vector32, __shuffle_vector4, __shuffle_vector64, __shuffle_vector8,
 };
 
 crate mod llvm {

@@ -37,10 +37,12 @@ define_tanh!(f32 => tanh_v2f32, f32x2, 2);
 define_tanh!(f32 => tanh_v4f32, f32x4, 4);
 define_tanh!(f32 => tanh_v8f32, f32x8, 8);
 define_tanh!(f32 => tanh_v16f32, f32x16, 16);
+define_tanh!(f32 => tanh_v32f32, f32x32, 32);
 
 define_tanh!(f64 => tanh_v2f64, f64x2, 2);
 define_tanh!(f64 => tanh_v4f64, f64x4, 4);
 define_tanh!(f64 => tanh_v8f64, f64x8, 8);
+define_tanh!(f64 => tanh_v16f64, f64x16, 16);
 
 fn tanh_f32(x: f32) -> f32 {
     libm::tanhf(x)
@@ -109,9 +111,11 @@ cfg_if! {
         impl_unary!(f32x4: tanh_v4f32);
         impl_unary!(f32x8: tanh_v8f32);
         impl_unary!(f32x16: tanh_v16f32);
+        impl_unary!(f32x32: tanh_v32f32);
 
         impl_unary!(f64x2: tanh_v2f64);
         impl_unary!(f64x4: tanh_v4f64);
         impl_unary!(f64x8: tanh_v8f64);
+        impl_unary!(f64x16: tanh_v16f64);
     }
 }

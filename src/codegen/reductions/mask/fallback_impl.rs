@@ -20,6 +20,7 @@ macro_rules! fallback_to_other_impl {
 }
 
 /// Fallback implementation.
+#[rustfmt::skip]
 macro_rules! fallback_impl {
     // 16-bit wide masks:
     (m8x2) => {
@@ -161,18 +162,33 @@ macro_rules! fallback_impl {
             }
         }
     };
-    (m16x32) => {
-        fallback_to_other_impl!(m16x32, m8x64);
+    // 1024-wide masks
+    (m8x128) => {
+        impl All for m8x128 {
+            #[inline]
+            unsafe fn all(self) -> bool {
+                let i: [u128; 8] = crate::mem::transmute(self);
+                let o: [u128; 8] = [u128::max_value(); 8];
+                i == o
+            }
+        }
+        impl Any for m8x128 {
+            #[inline]
+            unsafe fn any(self) -> bool {
+                let i: [u128; 8] = crate::mem::transmute(self);
+                let o: [u128; 8] = [0; 8];
+                i != o
+            }
+        }
     };
-    (m32x16) => {
-        fallback_to_other_impl!(m32x16, m16x32);
-    };
-    (m64x8) => {
-        fallback_to_other_impl!(m64x8, m32x16);
-    };
-    (m128x4) => {
-        fallback_to_other_impl!(m128x4, m64x8);
-    };
+    (m16x32) => {fallback_to_other_impl!(m16x32, m8x64); };
+    (m16x64) => {fallback_to_other_impl!(m16x64, m8x128); };
+    (m32x16) => {fallback_to_other_impl!(m32x16, m16x32); };
+    (m32x32) => {fallback_to_other_impl!(m32x32, m16x64); };
+    (m64x8)  => {fallback_to_other_impl!(m64x8,  m32x16); };
+    (m64x16) => {fallback_to_other_impl!(m64x16, m32x32); };
+    (m128x4) => {fallback_to_other_impl!(m128x4, m64x8); };
+    (m128x8) => {fallback_to_other_impl!(m128x8, m64x16); };
     // Masks with pointer-sized elements64
     (msizex2) => {
         cfg_if! {
@@ -202,6 +218,17 @@ macro_rules! fallback_impl {
                 fallback_to_other_impl!(msizex8, m64x8);
             } else if #[cfg(target_pointer_width = "32")] {
                 fallback_to_other_impl!(msizex8, m32x8);
+            } else {
+                compile_error!("unsupported target_pointer_width");
+            }
+        }
+    };
+    (msizex16) => {
+        cfg_if! {
+            if #[cfg(target_pointer_width = "64")] {
+                fallback_to_other_impl!(msizex16, m64x16);
+            } else if #[cfg(target_pointer_width = "32")] {
+                fallback_to_other_impl!(msizex16, m32x16);
             } else {
                 compile_error!("unsupported target_pointer_width");
             }

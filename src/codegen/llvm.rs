@@ -39,8 +39,14 @@ extern "platform-intrinsic" {
     where
         T: Simd,
         <T as Simd>::Element: Shuffle<[u32; 64], Output = U>;
+
+    pub fn simd_shuffle128<T, U>(x: T, y: T, idx: [u32; 128]) -> U
+    where
+        T: Simd,
+        <T as Simd>::Element: Shuffle<[u32; 128], Output = U>;
 }
 
+pub use self::simd_shuffle128 as __shuffle_vector128;
 pub use self::simd_shuffle16 as __shuffle_vector16;
 pub use self::simd_shuffle2 as __shuffle_vector2;
 pub use self::simd_shuffle32 as __shuffle_vector32;

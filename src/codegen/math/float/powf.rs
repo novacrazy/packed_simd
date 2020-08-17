@@ -19,6 +19,8 @@ extern "C" {
     fn powf_v8f32(x: f32x8, y: f32x8) -> f32x8;
     #[link_name = "llvm.pow.v16f32"]
     fn powf_v16f32(x: f32x16, y: f32x16) -> f32x16;
+    #[link_name = "llvm.pow.v32f32"]
+    fn powf_v32f32(x: f32x32, y: f32x32) -> f32x32;
     /* FIXME 64-bit powfgle elem vectors
     #[link_name = "llvm.pow.v1f64"]
     fn powf_v1f64(x: f64x1, y: f64x1) -> f64x1;
@@ -29,6 +31,8 @@ extern "C" {
     fn powf_v4f64(x: f64x4, y: f64x4) -> f64x4;
     #[link_name = "llvm.pow.v8f64"]
     fn powf_v8f64(x: f64x8, y: f64x8) -> f64x8;
+    #[link_name = "llvm.pow.v16f64"]
+    fn powf_v16f64(x: f64x16, y: f64x16) -> f64x16;
 
     #[link_name = "llvm.pow.f32"]
     fn powf_f32(x: f32, y: f32) -> f32;
@@ -104,9 +108,11 @@ cfg_if! {
         impl_binary!(f32x4: powf_v4f32);
         impl_binary!(f32x8: powf_v8f32);
         impl_binary!(f32x16: powf_v16f32);
+        impl_binary!(f32x32: powf_v32f32);
 
         impl_binary!(f64x2: powf_v2f64);
         impl_binary!(f64x4: powf_v4f64);
         impl_binary!(f64x8: powf_v8f64);
+        impl_binary!(f64x16: powf_v16f64);
     }
 }

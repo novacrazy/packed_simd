@@ -19,6 +19,8 @@ extern "C" {
     fn fma_v8f32(x: f32x8, y: f32x8, z: f32x8) -> f32x8;
     #[link_name = "llvm.fma.v16f32"]
     fn fma_v16f32(x: f32x16, y: f32x16, z: f32x16) -> f32x16;
+    #[link_name = "llvm.fma.v32f32"]
+    fn fma_v32f32(x: f32x32, y: f32x32, z: f32x32) -> f32x32;
     /* FIXME 64-bit single elem vectors
     #[link_name = "llvm.fma.v1f64"]
     fn fma_v1f64(x: f64x1, y: f64x1, z: f64x1) -> f64x1;
@@ -29,6 +31,8 @@ extern "C" {
     fn fma_v4f64(x: f64x4, y: f64x4, z: f64x4) -> f64x4;
     #[link_name = "llvm.fma.v8f64"]
     fn fma_v8f64(x: f64x8, y: f64x8, z: f64x8) -> f64x8;
+    #[link_name = "llvm.fma.v16f64"]
+    fn fma_v16f64(x: f64x16, y: f64x16, z: f64x16) -> f64x16;
 }
 
 gen_tertiary_impl_table!(MulAdd, mul_add);
@@ -101,9 +105,11 @@ cfg_if! {
         impl_tertiary!(f32x4: fma_v4f32);
         impl_tertiary!(f32x8: fma_v8f32);
         impl_tertiary!(f32x16: fma_v16f32);
+        impl_tertiary!(f32x32: fma_v32f32);
         // impl_tertiary!(f64x1: fma_v1f64); // FIXME 64-bit fmagle elem vectors
         impl_tertiary!(f64x2: fma_v2f64);
         impl_tertiary!(f64x4: fma_v4f64);
         impl_tertiary!(f64x8: fma_v8f64);
+        impl_tertiary!(f64x16: fma_v16f64);
     }
 }

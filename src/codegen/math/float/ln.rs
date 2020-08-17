@@ -19,6 +19,8 @@ extern "C" {
     fn ln_v8f32(x: f32x8) -> f32x8;
     #[link_name = "llvm.log.v16f32"]
     fn ln_v16f32(x: f32x16) -> f32x16;
+    #[link_name = "llvm.log.v32f32"]
+    fn ln_v32f32(x: f32x32) -> f32x32;
     /* FIXME 64-bit lngle elem vectors
     #[link_name = "llvm.log.v1f64"]
     fn ln_v1f64(x: f64x1) -> f64x1;
@@ -29,6 +31,8 @@ extern "C" {
     fn ln_v4f64(x: f64x4) -> f64x4;
     #[link_name = "llvm.log.v8f64"]
     fn ln_v8f64(x: f64x8) -> f64x8;
+    #[link_name = "llvm.log.v16f64"]
+    fn ln_v16f64(x: f64x16) -> f64x16;
 
     #[link_name = "llvm.log.f32"]
     fn ln_f32(x: f32) -> f32;
@@ -104,9 +108,11 @@ cfg_if! {
         impl_unary!(f32x4: ln_v4f32);
         impl_unary!(f32x8: ln_v8f32);
         impl_unary!(f32x16: ln_v16f32);
+        impl_unary!(f32x32: ln_v32f32);
 
         impl_unary!(f64x2: ln_v2f64);
         impl_unary!(f64x4: ln_v4f64);
         impl_unary!(f64x8: ln_v8f64);
+        impl_unary!(f64x16: ln_v16f64);
     }
 }

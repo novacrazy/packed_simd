@@ -187,9 +187,11 @@ cfg_if! {
         impl_def32!(f32x4);
         impl_def32!(f32x8);
         impl_def32!(f32x16);
+        impl_def32!(f32x32);
 
         impl_def64!(f64x2);
         impl_def64!(f64x4);
         impl_def64!(f64x8);
+        impl_def64!(f64x16);
     }
 }
