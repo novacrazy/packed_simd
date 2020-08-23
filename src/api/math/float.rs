@@ -13,10 +13,16 @@ mod cos;
 mod exp;
 
 #[macro_use]
+mod exp2;
+
+#[macro_use]
 mod powf;
 
 #[macro_use]
 mod ln;
+
+#[macro_use]
+mod log2;
 
 #[macro_use]
 mod mul_add;
