@@ -12,16 +12,16 @@ impl_from_cast!(u16x32[test_v512]: i8x32, u8x32, m8x32, i16x32, m16x32);
 impl_from_cast_mask!(m16x32[test_v512]: i8x32, u8x32, m8x32, i16x32, u16x32);
 
 impl_from_cast!(
-    i32x16[test_v512]: i8x16, u8x16, m8x16, i16x16, u16x16, m16x16, u32x16, f32x16, m32x16
+    i32x16[test_v512]: i8x16, u8x16, m8x16, i16x16, u16x16, m16x16, u32x16, f32x16, f64x16, m32x16
 );
 impl_from_cast!(
-    u32x16[test_v512]: i8x16, u8x16, m8x16, i16x16, u16x16, m16x16, i32x16, f32x16, m32x16
+    u32x16[test_v512]: i8x16, u8x16, m8x16, i16x16, u16x16, m16x16, i32x16, f32x16, f64x16, m32x16
 );
 impl_from_cast!(
-    f32x16[test_v512]: i8x16, u8x16, m8x16, i16x16, u16x16, m16x16, i32x16, u32x16, m32x16
+    f32x16[test_v512]: i8x16, u8x16, m8x16, i16x16, u16x16, m16x16, i32x16, u32x16, m32x16, f64x16
 );
 impl_from_cast_mask!(
-    m32x16[test_v512]: i8x16, u8x16, m8x16, i16x16, u16x16, m16x16, i32x16, u32x16, f32x16
+    m32x16[test_v512]: i8x16, u8x16, m8x16, i16x16, u16x16, m16x16, i32x16, u32x16, f32x16, f64x16
 );
 
 impl_from_cast!(

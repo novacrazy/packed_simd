@@ -4,13 +4,13 @@
 use crate::*;
 
 impl_from_cast!(
-    i8x16[test_v128]: u8x16, m8x16, i16x16, u16x16, m16x16, i32x16, u32x16, f32x16, m32x16
+    i8x16[test_v128]: u8x16, m8x16, i16x16, u16x16, m16x16, i32x16, u32x16, f32x16, f64x16, m32x16
 );
 impl_from_cast!(
-    u8x16[test_v128]: i8x16, m8x16, i16x16, u16x16, m16x16, i32x16, u32x16, f32x16, m32x16
+    u8x16[test_v128]: i8x16, m8x16, i16x16, u16x16, m16x16, i32x16, u32x16, f32x16, f64x16, m32x16
 );
 impl_from_cast_mask!(
-    m8x16[test_v128]: i8x16, u8x16, i16x16, u16x16, m16x16, i32x16, u32x16, f32x16, m32x16
+    m8x16[test_v128]: i8x16, u8x16, i16x16, u16x16, m16x16, i32x16, u32x16, f32x16, f64x16, m32x16
 );
 
 impl_from_cast!(
